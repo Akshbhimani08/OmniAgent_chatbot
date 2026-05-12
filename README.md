@@ -17,9 +17,9 @@ Building a truly useful AI assistant requires more than a single LLM — it need
 
 ---
 
-## 🚀 Live Demo(Linkedin post with Live working Video)
+## Live Demo(Linkedin post with Live working Video)
 
--> [Click here to view the live working & projects url](https://www.linkedin.com/feed/update/urn:li:activity:7459929672395530242/)
+-> [Click here to view the live working & project's url](https://www.linkedin.com/feed/update/urn:li:activity:7459929672395530242/)
 
 ## Architecture
 
@@ -49,12 +49,12 @@ User (Streamlit UI)
 
 | Feature | Detail |
 |---------|--------|
-| 🔍 **Web Search** | DuckDuckGo live search via LangChain community tool |
-| 📈 **Stock Prices** | Alpha Vantage `GLOBAL_QUOTE` endpoint by ticker symbol |
-| 📄 **PDF RAG** | Per-thread FAISS index — upload any PDF and ask questions |
-| 💸 **Expense Tracker** | Remote MCP server over Streamable HTTP |
-| 🗂️ **Persistent Memory** | SQLite checkpointer — conversations survive restarts |
-| 🖥️ **Streamlit UI** | Multi-chat sidebar, live token streaming, tool usage indicators |
+| **Web Search** | DuckDuckGo live search via LangChain community tool |
+| **Stock Prices** | Alpha Vantage `GLOBAL_QUOTE` endpoint by ticker symbol |
+| **PDF RAG** | Per-thread FAISS index — upload any PDF and ask questions |
+| **Expense Tracker** | Remote MCP server over Streamable HTTP |
+| **Persistent Memory** | SQLite checkpointer — conversations survive restarts |
+| **Streamlit UI** | Multi-chat sidebar, live token streaming, tool usage indicators |
 
 ---
 
