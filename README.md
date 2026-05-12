@@ -274,8 +274,5 @@ FastMCP handles all serialisation, routing, and error wrapping on the server sid
 
 - [ ] Add `search_arxiv` MCP tool integration for research paper lookup
 - [ ] Multi-PDF support per thread (index multiple documents simultaneously)
-- [ ] Voice input via Whisper API
 - [ ] Agent memory summarisation for very long threads
-- [ ] Docker Compose setup (frontend + local MCP server)
 - [ ] User authentication and per-user thread isolation
-- [ ] Export conversation as PDF or Markdown
