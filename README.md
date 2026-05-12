@@ -73,16 +73,6 @@ User (Streamlit UI)
 
 ### MCP Tools (Local — `mcp_server.py`)
 
-| Tool | Description |
-|------|-------------|
-| `add` | Add two numbers |
-| `subtract` | Subtract b from a |
-| `multiply` | Multiply two numbers |
-| `divide` | Divide a by b (zero-guard included) |
-| `power` | Raise base to exponent |
-| `square_root` | Square root (negative-guard included) |
-| `modulus` | Remainder of a ÷ b |
-
 ---
 
 ## Quickstart
