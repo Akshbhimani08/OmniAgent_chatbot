@@ -188,7 +188,7 @@ async def build_graph():
 
     tool_node = ToolNode(all_tools)
 
-    aconn = await aiosqlite.connect("06_small_chatbot_project/chatbot_database.db")
+    aconn = await aiosqlite.connect("chatbot_database.db")
     checkpointer = AsyncSqliteSaver(conn=aconn)
 
     graph = StateGraph(ChatState)
