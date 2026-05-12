@@ -34,7 +34,7 @@ User (Streamlit UI)
                 │
                 │  Streamable HTTP / SSE
                 ▼
-        Remote MCP Server(s)   (expense tracker, math tools, …)
+        Remote MCP Server(s)   (expense tracker tools, …)
 
  Persistence: AsyncSqliteSaver → chatbot_database.db
  Embeddings:  HuggingFace sentence-transformers/all-MiniLM-L6-v2
@@ -50,7 +50,6 @@ User (Streamlit UI)
 | 📈 **Stock Prices** | Alpha Vantage `GLOBAL_QUOTE` endpoint by ticker symbol |
 | 📄 **PDF RAG** | Per-thread FAISS index — upload any PDF and ask questions |
 | 💸 **Expense Tracker** | Remote MCP server over Streamable HTTP |
-| 🧮 **Math Tools** | Local FastMCP server exposing add, subtract, multiply, divide, power, sqrt, modulus |
 | 🗂️ **Persistent Memory** | SQLite checkpointer — conversations survive restarts |
 | 🖥️ **Streamlit UI** | Multi-chat sidebar, live token streaming, tool usage indicators |
 
@@ -112,7 +111,7 @@ ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key
 
 ```bash
 python mcp_server.py
-# Math Tools MCP server starts at http://localhost:8000/sse
+#Tools MCP server starts at http://localhost:8000/sse
 ```
 
 ### 4. Launch the Chatbot
@@ -129,7 +128,7 @@ streamlit run chatbot_frontend.py
 omniagent/
 ├── chatbot_frontend.py     # Streamlit UI — chat interface, sidebar, streaming
 ├── chatbot_backend.py      # LangGraph graph, tools, PDF ingestion, async loop
-├── mcp_server.py           # Local FastMCP server with math tools
+├── mcp_server.py           # Local FastMCP server with tools
 ├── chatbot_database.db     # SQLite persistence (auto-created)
 ├── .env                    # API keys (not committed)
 └── requirements.txt
