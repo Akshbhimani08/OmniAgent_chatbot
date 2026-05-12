@@ -182,93 +182,31 @@ A common Streamlit pitfall is `st.rerun()` firing the agent a second time for th
 
 ---
 
+## 🔭 LangSmith Tracing
+
+OmniAgent integrates with **[LangSmith](https://smith.langchain.com/)** for full observability into the LangGraph agent's execution.
+
+LangSmith traces every LLM call, tool invocation, and graph step end-to-end — making it easy to debug tool routing decisions, inspect token usage, and replay any conversation run. Each trace is linked to the LangGraph thread ID, so you can correlate a specific chat session directly with its execution trace in the LangSmith dashboard.
+
+To enable tracing, add the following to your `.env` file:
+
+```env
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_API_KEY=your_langsmith_api_key
+LANGCHAIN_PROJECT=omniagent
+```
+
+Once set, every agent run will appear automatically in your LangSmith project — no code changes required.
+
+---
+
 ## JSON-RPC 2.0 — The Data Transport Layer
 
 The Model Context Protocol uses **[JSON-RPC 2.0](https://www.jsonrpc.org/specification)** as its underlying data transport layer. Every message exchanged between an MCP client (`langchain-mcp-adapters`) and an MCP server (`mcp_server.py` or the remote expense server) is a JSON-RPC 2.0 envelope.
 
-### What is JSON-RPC 2.0?
+JSON-RPC 2.0 is a stateless, lightweight remote procedure call protocol encoded in JSON. It defines a strict request/response structure — each request carries a `method`, optional `params`, and an `id`; the server replies with either a `result` or an `error` under the same `id`. Notifications (fire-and-forget messages with no `id`) are also supported.
 
-JSON-RPC 2.0 is a stateless, lightweight remote procedure call (RPC) protocol encoded in JSON. It defines a strict message structure so any client can call any server method without knowing the underlying transport (HTTP, WebSocket, SSE, stdio).
-
-### Message Structure
-
-**Request** (client → server):
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "tools/call",
-  "params": {
-    "name": "add",
-    "arguments": { "a": 12.5, "b": 7.3 }
-  }
-}
-```
-
-**Success Response** (server → client):
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "content": [
-      { "type": "text", "text": "19.8" }
-    ]
-  }
-}
-```
-
-**Error Response** (server → client):
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "error": {
-    "code": -32602,
-    "message": "Invalid params",
-    "data": "Field 'b' is required"
-  }
-}
-```
-
-**Notification** (fire-and-forget, no `id`, no response expected):
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "notifications/progress",
-  "params": { "progressToken": "abc123", "progress": 50, "total": 100 }
-}
-```
-
-### Key Rules
-
-| Rule | Detail |
-|------|--------|
-| `"jsonrpc": "2.0"` | **Required** on every message |
-| `id` | Present on requests; must be echoed in the matching response. Omit for notifications |
-| `method` | String naming the procedure (e.g. `tools/call`, `tools/list`) |
-| `params` | Optional object or array of arguments |
-| `result` **xor** `error` | A response carries exactly one of these, never both |
-
-### Standard Error Codes
-
-| Code | Meaning |
-|------|---------|
-| `-32700` | Parse error — invalid JSON received |
-| `-32600` | Invalid request — missing required fields |
-| `-32601` | Method not found |
-| `-32602` | Invalid params |
-| `-32603` | Internal error |
-| `-32000` to `-32099` | Server-defined application errors (e.g. divide by zero) |
-
-### How MCP Uses JSON-RPC 2.0 in This Project
-
-`langchain-mcp-adapters` (`MultiServerMCPClient`) wraps every LangChain tool call in a `tools/call` JSON-RPC request and sends it over the configured transport:
-
-- **`mcp_server.py`** — local server using **SSE** transport (`http://localhost:8000/sse`)
-- **Remote expense server** — using **Streamable HTTP** transport
-
-FastMCP handles all serialisation, routing, and error wrapping on the server side — you define plain Python functions decorated with `@mcp.tool()` and the framework generates the JSON-RPC layer automatically.
+`langchain-mcp-adapters` wraps every tool call in a `tools/call` JSON-RPC request and sends it over the configured transport — **SSE** for the local `mcp_server.py` and **Streamable HTTP** for the remote expense server. FastMCP handles all serialisation, routing, and error wrapping on the server side automatically.
 
 > **Spec**: https://www.jsonrpc.org/specification
 
