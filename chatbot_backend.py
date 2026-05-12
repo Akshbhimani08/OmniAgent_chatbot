@@ -36,11 +36,14 @@ from langgraph.graph.message import add_messages
 
 search_tool = DuckDuckGoSearchRun(region="us-en")
 
-from langchain_community.embeddings import FastEmbedEmbeddings
 
-embed_model = FastEmbedEmbeddings(
-    model_name="BAAI/bge-small-en-v1.5"
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+
+embed_model = HuggingFaceEndpointEmbeddings(
+    model="sentence-transformers/all-MiniLM-L6-v2",  # or any embedding model
+    huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN") 
 )
+
 # -------------------
 # 2. PDF retriever store (per thread)
 # -------------------
