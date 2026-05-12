@@ -19,7 +19,7 @@ Building a truly useful AI assistant requires more than a single LLM — it need
 
 ## 🚀 Live Demo(Linkedin post with Live working Video)
 
--> [Click here to view the live working demo](https://www.linkedin.com/feed/update/urn:li:activity:7459929672395530242/)
+-> [Click here to view the live working & projects url](https://www.linkedin.com/feed/update/urn:li:activity:7459929672395530242/)
 
 ## Architecture
 
