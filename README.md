@@ -8,7 +8,6 @@ A production-grade, multi-tool AI chatbot powered by LangGraph, featuring RAG ov
 [![Groq](https://img.shields.io/badge/LLM-Groq-orange)](https://groq.com/)
 [![FastMCP](https://img.shields.io/badge/MCP-FastMCP-purple)](https://github.com/jlowin/fastmcp)
 [![FAISS](https://img.shields.io/badge/VectorDB-FAISS-blue)](https://faiss.ai/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 
 ---
 
