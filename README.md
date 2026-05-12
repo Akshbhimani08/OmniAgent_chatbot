@@ -80,7 +80,7 @@ User (Streamlit UI)
 ### 1. Clone & Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Akshbhimani08/OmniAgent_chatbot.git
 cd omniagent
 
 # Install dependencies
