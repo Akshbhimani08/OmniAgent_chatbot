@@ -18,7 +18,5 @@ huggingface_hub>=0.31.4
 typing-extensions>=4.13.2
 langgraph-checkpoint-sqlite
 ddgs
-fastembed
-onnxruntime
 
 
